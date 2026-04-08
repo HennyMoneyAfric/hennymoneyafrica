@@ -1,0 +1,78 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+https://api.algorithmia.com
+            - name: Execute Job
+  # You may pin to the exact commit or the version.
+  # uses: parasoft/execute-job-action@1899d360584e281e027c537d2df0f75a1115776e
+  uses: parasoft/execute-job-action@1.0.7
+  with:
+    # CTP URL
+    ctpUrl: 
+    # CTP Username
+    ctpUsername: 
+    # CTP Password
+    ctpPassword: 
+    # CTP Test Execution Job Name
+    ctpJob: 
+    # Abort the job after timeout exceeded
+    abortOnTimeout: # optional
+    # Timeout value in minutes
+    timeoutInMinutes: # optional
+    # Publish test execution results to DTP
+    publishReport: # optional
+    # DTP URL
+    dtpUrl: # optional
+    # DTP Username
+    dtpUsername: # optional
+    # DTP Password
+    dtpPassword: # optional
+    # DTP Project Name
+    dtpProject: # optional
+    # Build ID to send to DTP
+    buildId: # optional
+    # Session Tag to send to DTP
+    sessionTag: # optional
+    # Append the test variable set environment name to the session tag
+    appendEnvironment: # optional
+          
